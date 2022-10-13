@@ -78,18 +78,31 @@ class Balloon {
         this._posx=100;
         this._posy=0;
         this._speed=speed;
+        this._alive=true;
     }
 
     draw() {
+        ctx.clearRect(0,0,c.width,c.height);
         //ESKILD FYLL HER FOR DRAW
 console.log("bruh")
+if(this._posy<400){
 this._posy+=this._speed
+}
+
 ctx.beginPath();
 ctx.arc(this._posx,this._posy,40,0,2*Math.PI);
 ctx.stroke();
 ctx.fillStyle=this._color;
 ctx.fill();
         return
+    }
+    is_alive(){
+        if(this._alive==true){
+            return true
+        }
+        else{
+        return false
+        }
     }
 }
 
