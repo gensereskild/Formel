@@ -15,9 +15,12 @@ class Match {
     }
 
     draw_wave_msg() {
-        if (this._current_wave > this._waves.length) {
+        //Jeg endret fra > til >= sånn at man ikke får error når waves er over
+        if (this._current_wave >= this._waves.length) {
             this._finished = true;
-        } else {
+            console.log("yo")
+        } 
+        else {
 
             this._waves[this._current_wave].draw_wave();
 
@@ -147,11 +150,44 @@ class Balloon {
         console.log("LEVER")
         return this._alive;
     }
-    is_out_of_map() {
-        // if(this._posx>c.width+100 || this._posy>c.height+100){
-        //     this._alive=false;
-        //     console.log("død")
-        //     return this._hp
-        // }
-    }
 } //TODO: fjern unødvendige console.log's
+
+//work in progress
+class emotes{
+    constructor(bilde,damage,posx,posy,attack_speed){
+        this.posx=posx
+        this.posy=posy
+        this.img = document.createElement('img')
+        this.img.src= bilde
+        this.prosjektiler=[]
+        this.attack_speed=attack_speed
+        this.counter=0;
+    }
+    draw(){
+        ctx.drawImage(this.img,this.posx,this.posy,50,50)
+    }
+    skyt(){
+        this.counter++
+        if(this.counter==this.attack_speed){
+        this.prosjektiler.push(new prosjektil(this.posx,this.posy))
+        this.counter=0
+        }
+        for(var i=0; i<this.prosjektiler.length; i++){
+            this.prosjektiler[i].draw();
+        }
+    }
+}
+
+class prosjektil{
+    constructor(posx,posy){
+        this.posx=posx;
+        this.posy=posy;
+    }
+    draw(){
+        this.posx+=1
+        this.posy+=1
+        ctx.beginPath();
+        ctx.rect(this.posx, this.posy, 15, 15);
+        ctx.stroke();
+    }
+}

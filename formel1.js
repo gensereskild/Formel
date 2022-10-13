@@ -17,6 +17,8 @@ var testMatch = new Match([
     [1, 1, 1]
 ]);
 
+var omegalul = new emotes("img/Omegalul.webp",1,200,200,30)
+
 window.addEventListener('load', (event) => {
 
     test1 = setInterval(function () {
@@ -37,5 +39,8 @@ window.addEventListener('load', (event) => {
         ctx.lineTo(100, 400);
         ctx.lineTo(1000, 400)
         ctx.stroke();
+        
+        omegalul.draw();
+        omegalul.skyt();
     }, 10)
 })
