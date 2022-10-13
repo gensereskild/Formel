@@ -17,7 +17,7 @@ class Match {
 
     }
 
-    draw_wave() {
+    draw_wave_wave() {
         this._waves[this._current_wave].draw_wave();
         if(this._waves[this._current_wave].is_wave_alive() == false) {
             this.next_wave();
@@ -26,7 +26,7 @@ class Match {
 
     next_wave() {
         this._current_wave++;
-        console.error("NESTE WAVE STARTER!")
+        console.log("NESTE WAVE STARTER!")
     }
 }
 

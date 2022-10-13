@@ -10,17 +10,16 @@ console.log(balong1._color) */
 
 //balong1.draw()
 
-testMatch = new Match([[1,1,1],[1,1,1]]);
-testMatch.draw_wave();
 
 
+var testMatch = new Match([[1,1,1],[1,1,1]]);
 
 window.addEventListener('load',(event)=>{
 
     test1 = setInterval(function(){
         ctx.clearRect(0,0,c.width,c.height);
 
-
+        testMatch.draw_wave_wave();
 
 
        /*if (balong1.is_alive()==true){
