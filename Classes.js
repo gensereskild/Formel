@@ -12,12 +12,14 @@ class Match {
             this._waves.push(Wave(current[1],current[2],current[3]))
         }
 
-
     }
 
-    next_wave() {
+    draw_wave() {
+        this._waves[this._current_wave].draw_wave;
         
     }
+
+
 
 }
 
