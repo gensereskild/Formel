@@ -8,7 +8,6 @@ class Match {
         this._current_wave = 0;
         this._waves = [] //liste med waves
         console.log("LISTEN MED WAVES ER: " + this._wave_setup);
-
         //Lager Waves
         for(var i=0; i< this._wave_setup.length; i++) {
             var current = this._wave_setup[i]
@@ -17,8 +16,9 @@ class Match {
 
     }
 
-    draw_wave() {
+    draw_wave_msg() {
         this._waves[this._current_wave].draw_wave();
+       
         if(this._waves[this._current_wave].is_wave_alive() == false) {
             this.next_wave();
         }
@@ -26,7 +26,7 @@ class Match {
 
     next_wave() {
         this._current_wave++;
-        console.error("NESTE WAVE STARTER!")
+        console.log("NESTE WAVE STARTER!")
     }
 }
 
@@ -54,7 +54,9 @@ class Wave {
     }
     
     draw_wave() {
+        console.log("SENDER TEGNING")
         for (var i = 0; i < this._reds.length; i++) { //draw røde
+            console.log(this._reds);
             this._reds[i].draw();
         }
 
@@ -69,19 +71,23 @@ class Wave {
 
     is_wave_alive() {
         var check = false;
-        for (var q = 0; q < this._reds; q++) {
+        for (var q = 0; q < this._reds.length; q++) {
             if(this._reds[q].is_alive() == true) {
                 check = true;
+                console.error("REDS LEVER")
             }
         }
-        for (var q = 0; q < this._blues; q++) {
+        for (var q = 0; q < this._blues.length; q++) {
             if(this._blues[q].is_alive() == true) {
                 check = true;
+                console.error("BLUES LEVER")
             }
         }
-        for (var q = 0; q < this._greens; q++) {
+        console.error(this._greens.length);
+        for (var q = 0; q < this._greens.length; q++) {
             if(this._greens[q].is_alive() == true) {
                 check = true;
+                console.error("GREENS LEVER")
             }
         }
         console.log("Skjekket om i live: " + check)
@@ -104,7 +110,7 @@ class Balloon {
 
     draw() {
 
-console.log("tegner")
+console.log("bruh")
 if(this._posy<400){
 this._posy+=this._speed
 }
