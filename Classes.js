@@ -1,10 +1,12 @@
 
 
+
 class Match {
     constructor(wave_setup) {
         this._wave_setup = wave_setup;
         this._current_wave = 0;
         this._waves = [] //liste med waves
+        console.log("LISTEN MED WAVES ER: " + this._waves);
 
         //Lager Waves
         for(i=0; i<this.wave_setup.length; i++) {
@@ -23,6 +25,7 @@ class Match {
 
     next_wave() {
         this._current_wave++;
+        console.error("NESTE WAVE STARTER!")
     }
 }
 
