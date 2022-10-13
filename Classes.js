@@ -125,7 +125,7 @@ if(this._hp==0){
         return this._alive;
     }
     is_out_of_map(){
-        if(this._posx>c.width || this._posy>c.height){
+        if(this._posx>c.width+100 || this._posy>c.height+100){
             this._alive=false;
             console.log("død")
             return this._hp
