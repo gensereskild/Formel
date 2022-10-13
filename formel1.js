@@ -7,12 +7,12 @@ ctx.lineTo(100, 400);
 ctx.lineTo(1000,400)
 ctx.stroke();
 
-var balong1= new Balloon("red",10)
-
+var balong1= new Balloon("red",10,1)
+var test1;
 console.log(balong1._color)
 
 //balong1.draw()
 
-window.addEventListener('load',(event)=>{
-    setInterval(balong1.draw(),10)
+window.addEventListener('mousemove',(event)=>{
+    test1 = setInterval(balong1.draw(),100)
 })

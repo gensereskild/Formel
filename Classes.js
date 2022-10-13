@@ -53,18 +53,20 @@ class wave {
 
 
 class Balloon {
-    constructor(color, hp) {
+    constructor(color, hp, speed) {
         this._color = color;
         this._hp = hp;
-        this.posx=100;
-        this.posy=0;
+        this._posx=100;
+        this._posy=0;
+        this._speed=speed;
     }
 
     draw() {
         //ESKILD FYLL HER FOR DRAW
-
+console.log("bruh")
+this._posy+=this._speed
 ctx.beginPath();
-ctx.arc(100,0,40,0,2*Math.PI);
+ctx.arc(this._posx,this._posy,40,0,2*Math.PI);
 ctx.stroke();
 ctx.fillStyle=this._color;
 ctx.fill();
