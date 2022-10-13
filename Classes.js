@@ -97,10 +97,20 @@ ctx.arc(this._posx,this._posy,40,0,2*Math.PI);
 ctx.stroke();
 ctx.fillStyle=this._color;
 ctx.fill();
-        return
+
+if(this._hp==0){
+    this._alive=false;
+}
+
     }
     is_alive(){
         return this._alive;
+    }
+    is_out_of_map(){
+        if(this._posx>c.width || this._posy>c.height){
+            this._alive=false;
+            return this._hp
+        }
     }
 }
 

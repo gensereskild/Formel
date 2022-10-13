@@ -13,6 +13,8 @@ window.addEventListener('load',(event)=>{
 
     test1 = setInterval(function(){
         balong1.draw()
+        console.log(balong1.is_out_of_map())
+
         ctx.moveTo(100, 0);
         ctx.lineTo(100, 400);
         ctx.lineTo(1000,400)
