@@ -71,6 +71,7 @@ class Balloon {
     }
 
     draw() {
+        ctx.clearRect(0,0,c.width,c.height);
         //ESKILD FYLL HER FOR DRAW
 console.log("bruh")
 this._posy+=this._speed
