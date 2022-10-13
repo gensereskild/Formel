@@ -19,7 +19,10 @@ window.addEventListener('load',(event)=>{
     test1 = setInterval(function(){
         ctx.clearRect(0,0,c.width,c.height);
 
-        testMatch.draw_wave_wave();
+
+        testMatch.draw_wave_msg();
+
+
 
 
        /*if (balong1.is_alive()==true){
