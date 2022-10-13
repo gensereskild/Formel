@@ -12,8 +12,12 @@ console.log(balong1._color)
 window.addEventListener('load',(event)=>{
 
     test1 = setInterval(function(){
+        ctx.clearRect(0,0,c.width,c.height);
+
+        if (balong1.is_alive()==true){
         balong1.draw()
-        console.log(balong1.is_out_of_map())
+       }
+        balong1.is_out_of_map()
 
         ctx.moveTo(100, 0);
         ctx.lineTo(100, 400);

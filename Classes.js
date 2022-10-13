@@ -82,8 +82,7 @@ class Balloon {
     }
 
     draw() {
-        ctx.clearRect(0,0,c.width,c.height);
-        //ESKILD FYLL HER FOR DRAW
+
 console.log("bruh")
 if(this._posy<400){
 this._posy+=this._speed
@@ -109,6 +108,7 @@ if(this._hp==0){
     is_out_of_map(){
         if(this._posx>c.width || this._posy>c.height){
             this._alive=false;
+            console.log("død")
             return this._hp
         }
     }
