@@ -60,7 +60,7 @@ class Balloon {
     constructor(color, hp, speed) {
         this._color = color;
         this._hp = hp;
-        thhis._speed = speed;
+        
     }
 
     draw() {
