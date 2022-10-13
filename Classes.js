@@ -3,15 +3,16 @@
 
 class Match {
     constructor(wave_setup) {
+        console.log(wave_setup);
         this._wave_setup = wave_setup;
         this._current_wave = 0;
         this._waves = [] //liste med waves
-        console.log("LISTEN MED WAVES ER: " + this._waves);
+        console.log("LISTEN MED WAVES ER: " + this._wave_setup);
 
         //Lager Waves
-        for(i=0; i<this.wave_setup.length; i++) {
+        for(var i=0; i< this._wave_setup.length; i++) {
             var current = this._wave_setup[i]
-            this._waves.push(Wave(current[1],current[2],current[3]))
+            this._waves.push(new Wave(current[1],current[2],current[3]))
         }
 
     }
@@ -40,14 +41,14 @@ class Wave {
         this._greens = [];
 
 
-        for(b = 0; b < this._red_number; b++) {
-            this._reds.push(Balloon("red", 1, 1)) //konstruerer røde blåe og grønne
+        for(var b = 0; b < this._red_number; b++) {
+            this._reds.push(new Balloon("red", 1, 1)) //konstruerer røde blåe og grønne
         }
-        for(b = 0; b < this._blue_number; b++) {
-            this._blues.push(Balloon("blue", 2, 2))
+        for(var b = 0; b < this._blue_number; b++) {
+            this._blues.push(new Balloon("blue", 2, 2))
         }
-        for(b = 0; b < this._green_number; b++) {
-            this._greens.push(Balloon("green", 3, 3))
+        for(var b = 0; b < this._green_number; b++) {
+            this._greens.push(new Balloon("green", 3, 3))
         }
 
     }
@@ -83,6 +84,7 @@ class Wave {
                 check = true;
             }
         }
+        console.log("Skjekket om i live: " + check)
         return check;
     }
 }
@@ -102,7 +104,7 @@ class Balloon {
 
     draw() {
 
-console.log("bruh")
+console.log("tegner")
 if(this._posy<400){
 this._posy+=this._speed
 }
