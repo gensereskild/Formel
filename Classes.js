@@ -97,12 +97,7 @@ ctx.fill();
         return
     }
     is_alive(){
-        if(this._alive==true){
-            return true
-        }
-        else{
-        return false
-        }
+        return this._alive;
     }
 }
 
