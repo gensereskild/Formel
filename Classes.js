@@ -1,9 +1,13 @@
 
 
 class match {
-    constructor(number_of_waves, difficulty) {
-        this._number_of_waves = number_of_waves;
-        this._difficulty = difficulty;
+    constructor(wave_setup) {
+        this._wave_setup = wave_setup;
+        this._current_wave = 0;
+
+
+        //Lager Waves
+
     }
 
     next_wave() {
@@ -24,13 +28,13 @@ class wave {
 
 
         for(b = 0; b < this._red_number; b++) {
-            this._reds.push(Balloon("red", 1)) //konstruerer røde blåe og grønne
+            this._reds.push(Balloon("red", 1, 1)) //konstruerer røde blåe og grønne
         }
         for(b = 0; b < this._blue_number; b++) {
-            this._blues.push(Balloon("blue", 1))
+            this._blues.push(Balloon("blue", 2, 2))
         }
         for(b = 0; b < this._green_number; b++) {
-            this._greens.push(Balloon("green", 1))
+            this._greens.push(Balloon("green", 3, 3))
         }
 
     }
@@ -53,9 +57,10 @@ class wave {
 
 
 class Balloon {
-    constructor(color, hp) {
+    constructor(color, hp, speed) {
         this._color = color;
         this._hp = hp;
+        thhis._speed = speed;
     }
 
     draw() {
