@@ -68,6 +68,7 @@ class Balloon {
         this._posx=100;
         this._posy=0;
         this._speed=speed;
+        this._alive=true;
     }
 
     draw() {
@@ -81,6 +82,14 @@ ctx.stroke();
 ctx.fillStyle=this._color;
 ctx.fill();
         return
+    }
+    is_alive(){
+        if(this._alive==true){
+            return true
+        }
+        else{
+        return false
+        }
     }
 }
 
