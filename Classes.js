@@ -60,13 +60,13 @@ class Balloon {
     constructor(color, hp, speed) {
         this._color = color;
         this._hp = hp;
-        
+        this.posx=100;
+        this.posy=0;
     }
 
     draw() {
         //ESKILD FYLL HER FOR DRAW
-        var c = document.getElementById("test")
-var ctx = c.getContext("2d");
+
 ctx.beginPath();
 ctx.arc(100,0,40,0,2*Math.PI);
 ctx.stroke();

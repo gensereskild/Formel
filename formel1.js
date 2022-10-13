@@ -11,4 +11,8 @@ var balong1= new Balloon("red",10)
 
 console.log(balong1._color)
 
-balong1.draw()
+//balong1.draw()
+
+window.addEventListener('load',(event)=>{
+    setInterval(balong1.draw(),10)
+})
