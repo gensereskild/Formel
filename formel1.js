@@ -1,3 +1,3 @@
 //fakk deg eskild
 
-var canvas = $("#test")
+var canvas = document.getElementById("#test")
