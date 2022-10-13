@@ -12,27 +12,30 @@ console.log(balong1._color) */
 
 
 
-var testMatch = new Match([[1,1,1],[1,1,1]]);
+var testMatch = new Match([
+    [1, 1, 1],
+    [1, 1, 1]
+]);
 
-window.addEventListener('load',(event)=>{
+window.addEventListener('load', (event) => {
 
-    test1 = setInterval(function(){
-        ctx.clearRect(0,0,c.width,c.height);
+    test1 = setInterval(function () {
+        ctx.clearRect(0, 0, c.width, c.height);
+
+        if (testMatch.is_finished() != true) {
+            testMatch.draw_wave_msg();
+        }
 
 
-        testMatch.draw_wave_msg();
 
-
-
-
-       /*if (balong1.is_alive()==true){
-        balong1.draw()
-       }
-        balong1.is_out_of_map() */
+        /*if (balong1.is_alive()==true){
+         balong1.draw()
+        }
+         balong1.is_out_of_map() */
 
         ctx.moveTo(100, 0);
         ctx.lineTo(100, 400);
-        ctx.lineTo(1000,400)
+        ctx.lineTo(1000, 400)
         ctx.stroke();
-    },10)
+    }, 10)
 })
