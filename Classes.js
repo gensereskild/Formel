@@ -32,6 +32,13 @@ class Balloon {
 
     draw() {
         //ESKILD FYLL HER FOR DRAW
+        var c = document.getElementById("test")
+var ctx = c.getContext("2d");
+ctx.beginPath();
+ctx.arc(100,0,40,0,2*Math.PI);
+ctx.stroke();
+ctx.fillStyle=this._color;
+ctx.fill();
         return
     }
 }

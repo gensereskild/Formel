@@ -8,4 +8,7 @@ ctx.lineTo(1000,400)
 ctx.stroke();
 
 var balong1= new Balloon("red",10)
-console.log(Balong1)
+
+console.log(balong1._color)
+
+balong1.draw()
