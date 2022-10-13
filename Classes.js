@@ -1,12 +1,17 @@
 
 
-class match {
+class Match {
     constructor(wave_setup) {
         this._wave_setup = wave_setup;
         this._current_wave = 0;
-
+        this._waves = [] //liste med waves
 
         //Lager Waves
+        for(i=0; i<this.wave_setup.length; i++) {
+            var current = this._wave_setup[i]
+            this._waves.push(Wave(current[1],current[2],current[3]))
+        }
+
 
     }
 
@@ -16,7 +21,7 @@ class match {
 
 }
 
-class wave {
+class Wave {
     constructor(red_number, blue_number, green_number) {
         this._red_number = red_number;
         this._blue_number = blue_number;
