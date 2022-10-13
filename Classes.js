@@ -15,7 +15,9 @@ class Match {
     }
 
     draw_wave() {
-        this._waves[this._current_wave].draw_wave;
+        this._waves[this._current_wave].draw_wave();
+        var wave_alive = true;
+        //for(q = 0; q < )
         
     }
 
@@ -58,6 +60,12 @@ class Wave {
         for (var i = 0; i < this._greens.length; i++) { //draw grønne
             this._greens[i].draw();
         }
+    }
+
+    is_wave_alive() {
+        var check = false;
+        for (var q = 0; q < this._reds; q++);
+            console.log("Filler")
     }
 
 }
