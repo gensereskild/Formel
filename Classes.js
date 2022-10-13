@@ -77,7 +77,10 @@ class Balloon {
         ctx.clearRect(0,0,c.width,c.height);
         //ESKILD FYLL HER FOR DRAW
 console.log("bruh")
+if(this._posy<400){
 this._posy+=this._speed
+}
+
 ctx.beginPath();
 ctx.arc(this._posx,this._posy,40,0,2*Math.PI);
 ctx.stroke();
