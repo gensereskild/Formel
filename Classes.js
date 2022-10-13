@@ -16,13 +16,14 @@ class Match {
 
     draw_wave() {
         this._waves[this._current_wave].draw_wave();
-        var wave_alive = true;
-        //for(q = 0; q < )
-        
+        if(this._waves[this._current_wave].is_wave_alive() == false) {
+            this.next_wave();
+        }
     }
 
-
-
+    next_wave() {
+        this._current_wave++;
+    }
 }
 
 class Wave {
@@ -64,11 +65,26 @@ class Wave {
 
     is_wave_alive() {
         var check = false;
-        for (var q = 0; q < this._reds; q++);
-            console.log("Filler")
+        for (var q = 0; q < this._reds; q++) {
+            if(this._reds[q].is_alive() == true) {
+                check = true;
+            }
+        }
+        for (var q = 0; q < this._blues; q++) {
+            if(this._blues[q].is_alive() == true) {
+                check = true;
+            }
+        }
+        for (var q = 0; q < this._greens; q++) {
+            if(this._greens[q].is_alive() == true) {
+                check = true;
+            }
+        }
+        return check;
     }
-
 }
+
+
 
 
 class Balloon {
