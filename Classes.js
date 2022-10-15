@@ -54,15 +54,15 @@ class Wave {
         this.soret=[];
 
         for (var b = 0; b < this._red_number; b++) {
-            this._reds.push(new Balloon("red", 1, 3)) //konstruerer røde blåe og grønne
+            this._reds.push(new Balloon("red", 1, 4)) //konstruerer røde blåe og grønne
             this.all_ballon.push(this._reds[b])
         }
         for (var b = 0; b < this._blue_number; b++) {
-            this._blues.push(new Balloon("blue", 2, 0.5)) //TODO: fiks hastighetene. Økt for testing
+            this._blues.push(new Balloon("blue", 2, 3)) //TODO: fiks hastighetene. Økt for testing
             this.all_ballon.push(this._blues[b])
         }
         for (var b = 0; b < this._green_number; b++) {
-            this._greens.push(new Balloon("green", 3, 1))
+            this._greens.push(new Balloon("green", 3, 2))
             this.all_ballon.push(this._greens[b])
         }
         console.log(this.all_ballon)
@@ -89,7 +89,7 @@ class Wave {
     }
 
     draw_wave() {
-        for (var i = 0; i < this._reds.length; i++) { //draw røde
+       /* for (var i = 0; i < this._reds.length; i++) { //draw røde
             this._reds[i].draw();
         }
 
@@ -99,6 +99,9 @@ class Wave {
 
         for (var i = 0; i < this._greens.length; i++) { //draw grønne
             this._greens[i].draw();
+        }*/
+        for (var i =0; i<this.all_ballon.length; i++){
+            this.all_ballon[i].draw()
         }
     }
 
@@ -167,7 +170,6 @@ class Balloon {
     }
 } //TODO: fjern unødvendige console.log's
 
-//work in progress
 class emotes{
     constructor(bilde,damage,posx,posy,attack_speed){
         this.posx=posx
@@ -188,8 +190,11 @@ class emotes{
         this.counter=0
         }
         for(var i=0; i<this.prosjektiler.length; i++){
-            this.prosjektiler[i].draw(testMatch._waves[0].all_ballon[0]._posx, testMatch._waves[0].all_ballon[0]._posy);
-            this.prosjektiler[i].collide(testMatch._waves[0]._reds[0]._posx, testMatch._waves[0]._reds[0]._posy)
+            this.prosjektiler[i].draw(testMatch._waves[testMatch._current_wave].all_ballon[0]._posx,
+                 testMatch._waves[testMatch._current_wave].all_ballon[0]._posy);
+
+            this.prosjektiler[i].collide(testMatch._waves[testMatch._current_wave].all_ballon[0]._posx,
+                 testMatch._waves[testMatch._current_wave].all_ballon[0]._posy)
         }
     }
 }
@@ -199,6 +204,7 @@ class prosjektil{
         this.posx=posx;
         this.posy=posy;
     }
+    //skal fikse det her fr fr
     draw(balong_posx,balong_posy){
         if (this.posx<c.width-100 && this.posy<c.height-100){
             if (balong_posx>this.posx){
@@ -223,8 +229,12 @@ class prosjektil{
         this.differencey=Math.abs(balong_posy-this.posy)
 
 console.log("balong posisjon"+balong_posx+" "+balong_posy+" prosjektil posisjon" + this.posx +" "+ this.posy);
+
         if (Math.sqrt((this.differencex**2)+(this.differencey**2))<50){
             console.error("kollisjon")
+
+            testMatch._waves[testMatch._current_wave].all_ballon.splice(0,1);
+            omegalul.prosjektiler.splice(0,1);
         }
     }
 }
