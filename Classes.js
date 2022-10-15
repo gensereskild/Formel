@@ -188,7 +188,7 @@ class emotes{
         this.counter=0
         }
         for(var i=0; i<this.prosjektiler.length; i++){
-            this.prosjektiler[i].draw();
+            this.prosjektiler[i].draw(testMatch._waves[0].all_ballon[0]._posx, testMatch._waves[0].all_ballon[0]._posy);
             this.prosjektiler[i].collide(testMatch._waves[0]._reds[0]._posx, testMatch._waves[0]._reds[0]._posy)
         }
     }
@@ -199,18 +199,31 @@ class prosjektil{
         this.posx=posx;
         this.posy=posy;
     }
-    draw(){
+    draw(balong_posx,balong_posy){
         if (this.posx<c.width-100 && this.posy<c.height-100){
-        this.posx+=1
-        this.posy+=1
+            if (balong_posx>this.posx){
+                this.posx+=5
+            }
+            else{
+                this.posx+=-5
+            }
+            if (balong_posy>this.posy){
+                this.posy+=5
+            }
+            else{
+                this.posy+=-5
+            }
         ctx.beginPath();
         ctx.rect(this.posx, this.posy, 15, 15);
         ctx.stroke();
         }
     }
     collide(balong_posx,balong_posy){
+        this.differencex=Math.abs(balong_posx-this.posx)
+        this.differencey=Math.abs(balong_posy-this.posy)
 
-        if (this.posx-balong_posx<100 && this.posy-balong_posy<100){
+console.log("balong posisjon"+balong_posx+" "+balong_posy+" prosjektil posisjon" + this.posx +" "+ this.posy);
+        if (Math.sqrt((this.differencex**2)+(this.differencey**2))<50){
             console.error("kollisjon")
         }
     }
