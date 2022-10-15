@@ -18,15 +18,16 @@ class Match {
         //Jeg endret fra > til >= sånn at man ikke får error når waves er over
         if (this._current_wave >= this._waves.length) {
             this._finished = true;
+            alert("du vant gg ez")
         } 
         else {
+            if (this._waves[this._current_wave].is_wave_alive() == false) {
+                console.log("newxt wave")
+                this.next_wave();
+            }
 
             this._waves[this._current_wave].draw_wave();
             this._waves[this._current_wave].first_baloon();
-
-            if (this._waves[this._current_wave].is_wave_alive() == false) {
-                this.next_wave();
-            }
         }
     }
 
@@ -54,15 +55,15 @@ class Wave {
         this.soret=[];
 
         for (var b = 0; b < this._red_number; b++) {
-            this._reds.push(new Balloon("red", 1, 4)) //konstruerer røde blåe og grønne
+            this._reds.push(new Balloon(1)) //konstruerer røde blåe og grønne
             this.all_ballon.push(this._reds[b])
         }
         for (var b = 0; b < this._blue_number; b++) {
-            this._blues.push(new Balloon("blue", 2, 3)) //TODO: fiks hastighetene. Økt for testing
+            this._blues.push(new Balloon(2)) //TODO: fiks hastighetene. Økt for testing
             this.all_ballon.push(this._blues[b])
         }
         for (var b = 0; b < this._green_number; b++) {
-            this._greens.push(new Balloon("green", 3, 2))
+            this._greens.push(new Balloon(3))
             this.all_ballon.push(this._greens[b])
         }
         console.log(this.all_ballon)
@@ -102,12 +103,14 @@ class Wave {
         }*/
         for (var i =0; i<this.all_ballon.length; i++){
             this.all_ballon[i].draw()
+            if(this.all_ballon[i].is_alive()==false)
+            this.all_ballon.splice(i,1);
         }
     }
 
     is_wave_alive() {
-        var check = false;
-        for (var q = 0; q < this._reds.length; q++) {
+        var check = true;
+        /*for (var q = 0; q < this._reds.length; q++) {
             if (this._reds[q].is_alive() == true) {
                 check = true;
             }
@@ -121,6 +124,10 @@ class Wave {
             if (this._greens[q].is_alive() == true) {
                 check = true;
             }
+        }*/
+        if (this.all_ballon.length==0){
+
+            check=false
         }
         return check;
     }
@@ -130,16 +137,30 @@ class Wave {
 
 
 class Balloon {
-    constructor(color, hp, speed) {
-        this._color = color;
+    constructor(hp) {
         this._hp = hp;
         this._posx = 100;
         this._posy = 0;
-        this._speed = speed;
         this._alive = true;
     }
 
     draw() {
+        if (this._hp==3){
+            this._color="green"
+            this._speed=3;
+        }
+        else if(this._hp==2){
+            this._color="blue"
+            this._speed=2
+        }
+        else if(this._hp==1){
+            this._color="red"
+            this._speed=1
+        }
+        else{
+            this._alive=false;
+            testMatch._waves[testMatch._current_wave].soret.splice(0,1);
+        }
 
         if (this._posy < 400) {
             this._posy += this._speed
@@ -190,11 +211,12 @@ class emotes{
         this.counter=0
         }
         for(var i=0; i<this.prosjektiler.length; i++){
-            this.prosjektiler[i].draw(testMatch._waves[testMatch._current_wave].all_ballon[0]._posx,
-                 testMatch._waves[testMatch._current_wave].all_ballon[0]._posy);
+            this.prosjektiler[i].draw(testMatch._waves[testMatch._current_wave].soret[0]._posx,
+                 testMatch._waves[testMatch._current_wave].soret[0]._posy);
 
-            this.prosjektiler[i].collide(testMatch._waves[testMatch._current_wave].all_ballon[0]._posx,
-                 testMatch._waves[testMatch._current_wave].all_ballon[0]._posy)
+            this.prosjektiler[i].collide(testMatch._waves[testMatch._current_wave].soret[0]._posx,
+                 testMatch._waves[testMatch._current_wave].soret[0]._posy)
+                 console.log(testMatch._waves[testMatch._current_wave].soret[0])
         }
     }
 }
@@ -233,7 +255,8 @@ console.log("balong posisjon"+balong_posx+" "+balong_posy+" prosjektil posisjon"
         if (Math.sqrt((this.differencex**2)+(this.differencey**2))<50){
             console.error("kollisjon")
 
-            testMatch._waves[testMatch._current_wave].all_ballon.splice(0,1);
+            //testMatch._waves[testMatch._current_wave].all_ballon.splice(0,1);
+            testMatch._waves[testMatch._current_wave].soret[0]._hp+=-1;
             omegalul.prosjektiler.splice(0,1);
         }
     }
@@ -241,3 +264,5 @@ console.log("balong posisjon"+balong_posx+" "+balong_posy+" prosjektil posisjon"
 
 //mega viktig kode for meg :YEP: så jeg ikke mister oversikt
 //testMatch._waves[0]._reds[0]._posx
+//ting å implemintere
+// kjøpe tårn, penger, hjerter, baner, forskjellige tårn, oppgraderinger til tårn, lagring av data, bedre grafikk
