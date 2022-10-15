@@ -19,21 +19,19 @@ var testMatch = new Match([
 
 var omegalul = new emotes("img/Omegalul.webp",1,200,200,30)
 
-window.addEventListener('load', (event) => {
+var start = document.getElementById("start")
 
-    test1 = setInterval(function () {
+var mainloop =-1
+
+start.addEventListener("click", function(){
+
+    if(mainloop==-1){
+    mainloop = setInterval(function () {
         ctx.clearRect(0, 0, c.width, c.height);
 
         if (testMatch.is_finished() != true) {
             testMatch.draw_wave_msg();
         }
-
-
-
-        /*if (balong1.is_alive()==true){
-         balong1.draw()
-        }
-         balong1.is_out_of_map() */
 
         ctx.moveTo(100, 0);
         ctx.lineTo(100, 400);
@@ -42,5 +40,33 @@ window.addEventListener('load', (event) => {
         
         omegalul.draw();
         omegalul.skyt();
-    }, 10)
+    }, 40)
+}
+})
+
+var stop = document.getElementById("stop")
+stop.addEventListener("click",function(){
+    if(mainloop!=-1){
+        clearInterval(mainloop);
+        mainloop=-1;
+    }
+})
+
+window.addEventListener('load', (event) => {
+
+    /*test1 = setInterval(function () {
+        ctx.clearRect(0, 0, c.width, c.height);
+
+        if (testMatch.is_finished() != true) {
+            testMatch.draw_wave_msg();
+        }
+
+        ctx.moveTo(100, 0);
+        ctx.lineTo(100, 400);
+        ctx.lineTo(1000, 400)
+        ctx.stroke();
+        
+        omegalul.draw();
+        omegalul.skyt();
+    }, 40)*/
 })

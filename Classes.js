@@ -18,11 +18,11 @@ class Match {
         //Jeg endret fra > til >= sånn at man ikke får error når waves er over
         if (this._current_wave >= this._waves.length) {
             this._finished = true;
-            console.log("yo")
         } 
         else {
 
             this._waves[this._current_wave].draw_wave();
+            this._waves[this._current_wave].first_baloon();
 
             if (this._waves[this._current_wave].is_wave_alive() == false) {
                 this.next_wave();
@@ -49,24 +49,47 @@ class Wave {
         this._reds = [];
         this._blues = []; //lister for å holde hvert ballong objekt.
         this._greens = [];
-
+        this.all_ballon=[];
+        this.posyy=[];
+        this.soret=[];
 
         for (var b = 0; b < this._red_number; b++) {
             this._reds.push(new Balloon("red", 1, 3)) //konstruerer røde blåe og grønne
+            this.all_ballon.push(this._reds[b])
         }
         for (var b = 0; b < this._blue_number; b++) {
-            this._blues.push(new Balloon("blue", 2, 4)) //TODO: fiks hastighetene. Økt for testing
+            this._blues.push(new Balloon("blue", 2, 0.5)) //TODO: fiks hastighetene. Økt for testing
+            this.all_ballon.push(this._blues[b])
         }
         for (var b = 0; b < this._green_number; b++) {
-            this._greens.push(new Balloon("green", 3, 5))
+            this._greens.push(new Balloon("green", 3, 1))
+            this.all_ballon.push(this._greens[b])
         }
+        console.log(this.all_ballon)
 
+    }
+    first_baloon(){
+        this.soret=[]
+        this.posyy=[]
+        for(var i =0; i<this.all_ballon.length; i++){
+        this.posyy.push(this.all_ballon[i]._posy)
+        }
+        this.posyy.sort(function(a,b){return b-a})
+
+        for(var i =0; i<this.all_ballon.length; i++){
+            for(var x =0; x<this.all_ballon.length; x++){
+
+
+                if(this.all_ballon[x]._posy==this.posyy[i]){
+                    this.soret.push(this.all_ballon[x])
+                }
+            }
+        }
+        console.log(this.soret)
     }
 
     draw_wave() {
-        console.log("SENDER TEGNING")
         for (var i = 0; i < this._reds.length; i++) { //draw røde
-            console.log(this._reds);
             this._reds[i].draw();
         }
 
@@ -84,23 +107,18 @@ class Wave {
         for (var q = 0; q < this._reds.length; q++) {
             if (this._reds[q].is_alive() == true) {
                 check = true;
-                console.error("REDS LEVER")
             }
         }
         for (var q = 0; q < this._blues.length; q++) {
             if (this._blues[q].is_alive() == true) {
                 check = true;
-                console.error("BLUES LEVER")
             }
         }
-        console.error(this._greens.length);
         for (var q = 0; q < this._greens.length; q++) {
             if (this._greens[q].is_alive() == true) {
                 check = true;
-                console.error("GREENS LEVER")
             }
         }
-        console.log("Skjekket om i live: " + check)
         return check;
     }
 }
@@ -120,7 +138,6 @@ class Balloon {
 
     draw() {
 
-        console.log("bruh")
         if (this._posy < 400) {
             this._posy += this._speed
         } else {
@@ -139,7 +156,6 @@ class Balloon {
 
         if (this._posx > c.width + 100 || this._posy > c.height + 100) {
             this._alive = false;
-            console.log("død")
             //return this._hp
         }
 
@@ -147,7 +163,6 @@ class Balloon {
 
     }
     is_alive() {
-        console.log("LEVER")
         return this._alive;
     }
 } //TODO: fjern unødvendige console.log's
@@ -174,6 +189,7 @@ class emotes{
         }
         for(var i=0; i<this.prosjektiler.length; i++){
             this.prosjektiler[i].draw();
+            this.prosjektiler[i].collide(testMatch._waves[0]._reds[0]._posx, testMatch._waves[0]._reds[0]._posy)
         }
     }
 }
@@ -184,10 +200,21 @@ class prosjektil{
         this.posy=posy;
     }
     draw(){
+        if (this.posx<c.width-100 && this.posy<c.height-100){
         this.posx+=1
         this.posy+=1
         ctx.beginPath();
         ctx.rect(this.posx, this.posy, 15, 15);
         ctx.stroke();
+        }
+    }
+    collide(balong_posx,balong_posy){
+
+        if (this.posx-balong_posx<100 && this.posy-balong_posy<100){
+            console.error("kollisjon")
+        }
     }
 }
+
+//mega viktig kode for meg :YEP: så jeg ikke mister oversikt
+//testMatch._waves[0]._reds[0]._posx
