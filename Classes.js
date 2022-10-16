@@ -229,7 +229,26 @@ class prosjektil{
     //skal fikse det her fr fr
     draw(balong_posx,balong_posy){
         if (this.posx<c.width-100 && this.posy<c.height-100){
-            if (balong_posx>this.posx){
+            this.difx=this.posx-balong_posx
+            this.dify=this.posy-balong_posy
+            /*this.hyp = Math.sqrt(this.difx**2+this.dify**2)
+            this.anglex=Math.acos(this.difx/this.hyp)*(180/Math.PI)
+            this.angely=Math.asin(this.dify/this.hyp)*(180/Math.PI)
+            console.log("vinkelx "+this.angelx)
+            console.log("vinkely "+this.angely)
+            this.posx+=5*this.anglex
+            this.posy+=5*this.angley*/
+
+            this.aangle = Math.atan2( this.dify, this.difx ) * ( 180 / Math.PI )
+            console.log("forskjellx "+this.difx)
+            console.log("forskjelly "+this.dify)
+            console.log("vinkel "+this.aangle);
+            
+            console.log("cosinus av vinkel"+Math.cos(this.aangle))
+            this.posx+=Math.cos((this.aangle/90)*Math.PI)*-5
+            this.posy+=Math.sin((this.aangle/90)*Math.PI)*-5
+
+            /*if (balong_posx>this.posx){
                 this.posx+=5
             }
             else{
@@ -240,7 +259,7 @@ class prosjektil{
             }
             else{
                 this.posy+=-5
-            }
+            }*/
         ctx.beginPath();
         ctx.rect(this.posx, this.posy, 15, 15);
         ctx.stroke();
